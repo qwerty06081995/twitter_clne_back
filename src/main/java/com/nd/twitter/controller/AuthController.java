@@ -78,9 +78,6 @@ public class AuthController {
 
     private Authentication authenticate(String username, String password) throws UserException {
         UserDetails details = customUserDetailsServiceImpl.loadUserByUsername(username);
-        if (details == null) {
-            throw new BadCredentialsException("Invalid username");
-        }
 
         if (!passwordEncoder.matches(password, details.getPassword())) {
             throw new BadCredentialsException("Invalid username or password");
